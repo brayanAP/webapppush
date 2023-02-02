@@ -24,14 +24,14 @@ function App() {
   }
 
   React.useEffect(() => {
-    onMessage(messaging, message => {
+    const unsubscribe = onMessage(messaging, message => {
       console.log("tu mensaje:", message);
       toast(message.notification.title);
-
-
     })
 
-
+    return () => {
+      unsubscribe();
+    }
   }, []);
 
   return (
